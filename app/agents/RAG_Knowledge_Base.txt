@@ -45,13 +45,13 @@ prompt: Present the interface details strictly in table format based on payload(
 type: table
 description: List of reports, extracts, and outputs required functionally.
 fields: [Report/Output Name, Format/Layout, Destination, Purpose/Description]
-prompt: Carefully analyze the payload and list all reports/outputs required in the table.
+prompt: Carefully analyze the payload(Output Format) and list all reports/outputs required in the table. Check where ever output of program is mentioned and append it in this section.
 
 #User Interface Requirements
 type: table
 description: List of functional screen fields, user interactions, and validations, selection-screen, parameters.
 fields: [Screen/Field Name, Field Type, Default Value, Mandatory (Y/N), Business Purpose/Validation]
-prompt: Check for all the selection screen parameters and screen fields and present the results strictly as a table based on payload.
+prompt: Check for all the selection screen parameters and screen fields and present the results strictly as a table based on payload(Report Filters). Selection Screen fields usually starts with 'S_***' and 'P_***" where these kind of variables are mentioned those would be UI details. pick those
 
 #Authorization & Security
 type: table
