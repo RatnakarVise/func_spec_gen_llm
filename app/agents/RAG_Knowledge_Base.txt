@@ -22,12 +22,12 @@ prompt: Carefully analyze the payload(business_process) and present the process 
 #Functional Scope
 type: text
 description: Definition of what is included and excluded in the functional scope of the solution.
-prompt: From the payload(requirement_summary and business_process), list: 1. In-Scope items 2. Out-of-Scope items. Present in numbered format.
+prompt: From the payload, list: 1. In-Scope items 2. Out-of-Scope items. Present in numbered format. This should be in detail and should contain all the logic.
 
 #Functional Solution Approach
 type: text
 description: High-level description of how the business requirement will be addressed functionally.
-prompt: Carefully analyze the payload(requirement_summary, business_rules) and summarize the functional solution approach as: 1. … 2. … 3. …
+prompt: Carefully analyze the payload and and for every functional scope provide the functional solution approach in detail as: 1. … 2. … 3. …
 
 #Functional Requirements & Business Rules
 type: table
@@ -45,13 +45,13 @@ prompt: Present the interface details strictly in table format based on payload(
 type: table
 description: List of reports, extracts, and outputs required functionally.
 fields: [Report/Output Name, Format/Layout, Destination, Purpose/Description]
-prompt: Carefully analyze the payload(reporting) and list all reports/outputs in the table.
+prompt: Carefully analyze the payload and list all reports/outputs required in the table.
 
 #User Interface Requirements
 type: table
-description: List of functional screen fields, user interactions, and validations.
+description: List of functional screen fields, user interactions, and validations, selection-screen, parameters.
 fields: [Screen/Field Name, Field Type, Default Value, Mandatory (Y/N), Business Purpose/Validation]
-prompt: Present the results strictly as a table based on payload(ui_details).
+prompt: Check for all the selection screen parameters and screen fields and present the results strictly as a table based on payload.
 
 #Authorization & Security
 type: table
