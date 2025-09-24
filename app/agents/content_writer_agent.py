@@ -58,13 +58,14 @@ def filter_payload_by_keys(payload: Dict[str, Any], required_keys: List[str]) ->
 # Each bundle is ( [section_name1, section_name2, ...], [payload_key1, payload_key2, ...])
 # NOT clubbed sections can be left as ["Section"], ["payload_key1"] so they're handled individually.
 SECTION_BUNDLES = [
+    (["Output"], ['FDD']), 
+    (["UI Requirement"], ['FDD']),
     (["Document Information", "Introduction", "Business Requirement Overview", "Business Process Flow"], ['FDD']),
     (["Functional Scope"], ['FDD']),
-    (["Functional Solution Approach", "Functional Requirements & Business Rules"], ['FDD']),
+    (["Functional Solution Approach", "Functional Requirements"], ['FDD']),
     (["Interfaces & Integration"], ['FDD']),
-    (["Authorization & Security", "Error Handling & Notifications", "Assumptions & Dependencies", "Test Scenarios"], ['FDD']),
-    (["Reports & Outputs"], ['FDD']), 
-    (["User Interface Requirements"], ['FDD']),    
+    (["Authorization & Security", "Error Handling & Notifications", "Assumptions & Dependencies"], ['FDD']),
+    (["Test Scenarios"], ['FDD']),    
     (["Sign-Off"], []),
 ]
 # =============================================================================
@@ -137,7 +138,7 @@ class ContentWriterAgent:
         batched_prompt += "You will generate content for multiple SECTIONS of an SAP ABAP document in one response. For each section:\n"
         batched_prompt += "- Strictly follow its 'BIBLE' (authoritative knowledge) shown for that section\n"
         batched_prompt += "- Use ONLY the information in the provided payload JSON\n"
-        batched_prompt += "- For each section, output as:\n<<START:{Section Name}>>\n<content>\n<<END:{Section Name}>>\n\n"
+        batched_prompt += "- For each section,strictly add the section header output as:\n<<START:{Section Name}>>\n<content>\n<<END:{Section Name}>>\n\n"
 
         batched_prompt += f"\nThe relevant context (payload) for all these sections is:\n```json\n{context_json}\n```\n"
 
@@ -170,6 +171,9 @@ class ContentWriterAgent:
                 # max_tokens omitted!
             )
             output = response.choices[0].message.content.strip()
+            print("\n\n===== RAW LLM OUTPUT =====\n")
+            print(output)
+            print("\n===== END RAW LLM OUTPUT =====\n")
             # Now split output into sections
             # Split output into sections using delimiters
             result = {}
