@@ -51,10 +51,10 @@ prompt: >
   1. Identify all program outputs, report results, and generated extracts. 
   2. Include the format (Excel, PDF, CSV, etc.) and layout if specified. 
   3. Specify the destination (SAP AL11 path, email, spool, etc.). 
-  4. Provide the functional purpose or description of each output. 
+  4. Provide the functional purpose or description of each output.
 
 #UI Requirement
-type: Text
+type: test
 description: >
   List of functional screen fields, selection-screen parameters, user interactions, defaults, and validations.
 prompt: >

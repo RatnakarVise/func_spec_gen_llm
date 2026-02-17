@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 logger = logging.getLogger("content_writer_agent")
 logging.basicConfig(level=logging.INFO)
 
-dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
-load_dotenv(dotenv_path=dotenv_path)
+# dotenv_path = os.path.join(os.path.dirname(__file__), ".env")
+load_dotenv( )
 langchain_api_key = os.getenv("LANGCHAIN_API_KEY")
 openai_api_key = os.getenv("OPENAI_API_KEY")
 if langchain_api_key:
@@ -26,7 +26,7 @@ os.environ["LANGCHAIN_TRACING_V2"] = "true"
 #     os.environ["OPENAI_API_KEY"] = openai_api_key
 # os.environ["LANGCHAIN_TRACING_V2"] = "true"
 
-OPENAI_MODEL = "gpt-4.1"
+OPENAI_MODEL = "openai.gpt-4.1"
 TEMPLATE_PATH = os.path.join(os.path.dirname(__file__), "RAG_Knowledge_Base.txt")
 
 def load_sections_from_template(template_file: str) -> list:
@@ -87,7 +87,8 @@ class ContentWriterAgent:
     def __init__(self, model=OPENAI_MODEL, template_path=TEMPLATE_PATH):
         self.model = model
         self.template_path = template_path
-        self.openai_client = openai.OpenAI(api_key=openai_api_key)
+        self.openai_client = openai.OpenAI(api_key=openai_api_key,
+                                           base_url="https://genai-sharedservice-americas.pwcinternal.com")
         self.template_sections = load_sections_from_template(self.template_path)
         self.results = []  # Will hold each row: {"section_name": "<>", "content": "<>"}
 
